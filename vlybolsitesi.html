@@ -1,0 +1,1178 @@
+# Düzeltilmiş Voleybol Sitesi HTML Kodu
+
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voleybol Sitesi</title>
+<style>
+/* Genel Stil */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+    color: #333;
+}
+
+.container-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: #006400;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Navigasyon */
+nav {
+    background: #050063;
+    padding: 15px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav a {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+nav a:hover {
+    background: #0a0a7a;
+}
+
+nav a.active-nav {
+    background: #006400;
+}
+
+/* Tab İçerikleri */
+.tab {
+    display: none;
+    padding: 20px;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.tab.active {
+    display: block;
+}
+
+/* İçerik Düzeni */
+.container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.left, .right {
+    width: 48%;
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
+    .left, .right {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Başlıklar */
+h1 {
+    color: #ba0000;
+    border-bottom: 2px solid #333333;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+h2 {
+    color: #050063;
+    border-left: 4px solid #050063;
+    padding-left: 10px;
+}
+
+/* Listeler */
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    padding: 5px 0;
+}
+
+/* Haberler */
+#haberler ul li {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+#haberler ul li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Takımlar */
+.team-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.team-logo {
+    width: 50px;
+    height: 50px;
+    background: #eee;
+    border-radius: 50%;
+    margin-right: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Fikstur */
+.match {
+    background: #f5f5f5;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #ba0000;
+}
+
+.match-date {
+    font-weight: bold;
+    color: #050063;
+}
+
+/* Form Stilleri */
+.contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #050063;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #050063;
+    box-shadow: 0 0 5px rgba(5, 0, 99, 0.3);
+}
+
+textarea.form-control {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.btn {
+    background: #050063;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background: #0a0a7a;
+    transform: translateY(-2px);
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.form-col {
+    flex: 1;
+    padding: 0 10px;
+    min-width: 200px;
+}
+
+.form-success {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+/* Footer */
+footer {
+    background: #050063;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+}
+
+/* Sosyal Medya */
+.social-media {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icon {
+    margin: 0 10px;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: #050063;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Chatbot Stilleri */
+.chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.chatbot-toggle {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #050063, #006400);
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: white;
+    font-size: 24px;
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.chatbot-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: chatbotSlideIn 0.3s ease-out;
+}
+
+@keyframes chatbotSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.chatbot-header {
+    background: linear-gradient(135deg, #050063, #006400);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+}
+
+.chatbot-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.chatbot-header .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatbot-header .close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.chatbot-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+
+.message {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: flex-start;
+    animation: messageSlideIn 0.3s ease-out;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.message.user {
+    flex-direction: row-reverse;
+}
+
+.message-content {
+    max-width: 70%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.message.bot .message-content {
+    background: white;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    margin-left: 10px;
+}
+
+.message.user .message-content {
+    background: #050063;
+    color: white;
+    margin-right: 10px;
+}
+
+.message-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.message.bot .message-avatar {
+    background: #006400;
+    color: white;
+}
+
+.message.user .message-avatar {
+    background: #050063;
+    color: white;
+}
+
+.chatbot-input {
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    background: white;
+}
+
+.input-container {
+    display: flex;
+    gap: 10px;
+}
+
+.chatbot-input input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+}
+
+.chatbot-input input:focus {
+    border-color: #050063;
+    box-shadow: 0 0 5px rgba(5, 0, 99, 0.3);
+}
+
+.send-btn {
+    width: 40px;
+    height: 40px;
+    background: #050063;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.send-btn:hover {
+    background: #0a0a7a;
+}
+
+.quick-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.quick-btn {
+    padding: 6px 12px;
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.quick-btn:hover {
+    background: #050063;
+    color: white;
+    border-color: #050063;
+}
+
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 15px;
+    background: white;
+    border-radius: 18px;
+    margin-left: 40px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background: #999;
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite;
+}
+
+.typing-dot:nth-child(1) { animation-delay: 0ms; }
+.typing-dot:nth-child(2) { animation-delay: 200ms; }
+.typing-dot:nth-child(3) { animation-delay: 400ms; }
+
+@keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-10px); }
+}
+
+/* Mobil uyumluluk */
+@media (max-width: 768px) {
+    .chatbot-window {
+        width: 300px;
+        height: 450px;
+    }
+    .chatbot-container {
+        bottom: 15px;
+        right: 15px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>VOLEYBOL TÜRKİYE</h1>
+    <p>Türkiye'nin en güncel voleybol portalı</p>
+</header>
+
+<nav id="main-nav">
+    <a href="#" class="nav-link active-nav" data-tab="anasayfa">Anasayfa</a>
+    <a href="#" class="nav-link" data-tab="takimlar">Takımlar</a>
+    <a href="#" class="nav-link" data-tab="fikstur">Fikstür</a>
+    <a href="#" class="nav-link" data-tab="sampiyonlar">Şampiyonlar</a>
+    <a href="#" class="nav-link" data-tab="haberler">Voleybol Haberleri</a>
+    <a href="#" class="nav-link" data-tab="iletisim">İletişim</a>
+    <a href="#" class="nav-link" data-tab="hakkimizda">Hakkımızda</a>
+</nav>
+
+<div class="container-main">
+
+<div id="anasayfa" class="tab active">
+    <h1>Voleybol Dünyasına Hoş Geldiniz</h1>
+    <p>Türkiye'nin en güncel ve kapsamlı voleybol portalına hoş geldiniz. Burada Sultanlar ve Efeler Ligi başta olmak üzere, tüm voleybol dünyasındaki gelişmeleri yakından takip edebilirsiniz.</p>
+    
+    <div class="container">
+        <div class="left">
+            <h2>Son Haberler</h2>
+            <div class="match">
+                <span class="match-date">18 Mart 2025</span>
+                <p>VakıfBank, Şampiyonlar Ligi yarı finalinde!</p>
+            </div>
+            <div class="match">
+                <span class="match-date">5 Nisan 2025</span>
+                <p>VakıfBank, Sultanlar Liginde şampiyon!</p>
+            </div>
+            <div class="match">
+                <span class="match-date">17 Mart 2025</span>
+                <p>Fenerbahçe Medicana, Kuzeyboru karşısında 3-1 galip geldi.</p>
+            </div>
+        </div>
+        
+        <div class="right">
+            <h2>Gelecek Maçlar</h2>
+            <div class="match">
+                <span class="match-date">20 Mart 2025</span>
+                <p>VakıfBank vs Eczacıbaşı Dynavit (19:00)</p>
+            </div>
+            <div class="match">
+                <span class="match-date">22 Mart 2025</span>
+                <p>Fenerbahçe HDI Sigorta vs Galatasaray HDI Sigorta (17:30)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="takimlar" class="tab">
+    <h1>Takımlar</h1>
+    <div class="container">
+        <div class="left">
+            <h2>Sultanlar Ligi</h2>
+            <div class="team-card">
+                <div class="team-logo">VB</div>
+                <div>VakıfBank</div>
+            </div>
+            <div class="team-card">
+                <div class="team-logo">ED</div>
+                <div>Eczacıbaşı Dynavit</div>
+            </div>
+            <div class="team-card">
+                <div class="team-logo">FB</div>
+                <div>Fenerbahçe Medicana</div>
+            </div>
+            <div class="team-card">
+                <div class="team-logo">GS</div>
+                <div>Galatasaray Daikin</div>
+            </div>
+        </div>
+        
+        <div class="right">
+            <h2>Efeler Ligi</h2>
+            <div class="team-card">
+                <div class="team-logo">HB</div>
+                <div>Halkbank</div>
+            </div>
+            <div class="team-card">
+                <div class="team-logo">ZB</div>
+                <div>Ziraat Bankkart</div>
+            </div>
+            <div class="team-card">
+                <div class="team-logo">FB</div>
+                <div>Fenerbahçe Medicana</div>
+            </div>
+            <div class="team-card">
+                <div class="team-logo">GS</div>
+                <div>Galatasaray HDI Sigorta</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fikstur" class="tab">
+    <h1>Fikstür</h1>
+    <div class="container">
+        <div class="left">
+            <h2>Sultanlar Ligi</h2>
+            <div class="match">
+                <span class="match-date">20 Mart 2025 (19:00)</span>
+                <p>VakıfBank vs Eczacıbaşı Dynavit</p>
+                <p><small>Yer: VakıfBank Spor Sarayı</small></p>
+            </div>
+            <div class="match">
+                <span class="match-date">22 Mart 2025 (16:00)</span>
+                <p>Fenerbahçe Opet vs Aydın Büyükşehir Belediyesi</p>
+                <p><small>Yer: Metro Enerji Spor Salonu</small></p>
+            </div>
+            <div class="match">
+                <span class="match-date">4 Haziran 2025 (16:00)</span>
+                <p>Filenin Sultanları vs Fransa</p>
+                <p><small>Yer: Metro Enerji Spor Salonu</small></p>
+            </div>
+        </div>
+        
+        <div class="right">
+            <h2>Efeler Ligi</h2>
+            <div class="match">
+                <span class="match-date">20 Mart 2025 (17:30)</span>
+                <p>Halkbank vs Ziraat Bankkart</p>
+                <p><small>Yer: TVF Başkent Salonu</small></p>
+            </div>
+            <div class="match">
+                <span class="match-date">22 Mart 2025 (17:30)</span>
+                <p>Fenerbahçe Medicana vs Galatasaray HDI Sigorta</p>
+                <p><small>Yer: Burhan Felek Voleybol Salonu</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="sampiyonlar" class="tab">
+    <h1>Şampiyonlar</h1>
+    <div class="container">
+        <div class="left">
+            <h2>Sultanlar Ligi</h2>
+            <div class="match">
+                <span class="match-date">2024 Sezonu</span>
+                <p>Fenerbahçe Opet</p>
+            </div>
+            <div class="match">
+                <span class="match-date">2023 Sezonu</span>
+                <p>Fenerbahçe Opet</p>
+            </div>
+            <div class="match">
+                <span class="match-date">2022 Sezonu</span>
+                <p>Vakıfbank</p>
+            </div>
+        </div>
+        
+        <div class="right">
+            <h2>Efeler Ligi</h2>
+            <div class="match">
+                <span class="match-date">2024 Sezonu</span>
+                <p>Halkbank</p>
+            </div>
+            <div class="match">
+                <span class="match-date">2023 Sezonu</span>
+                <p>Ziraat Bankkart</p>
+            </div>
+            <div class="match">
+                <span class="match-date">2022 Sezonu</span>
+                <p>Fenerbahçe HDI Sigorta</p>
+            </div>
+        </div>
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <h2>Avrupa Kupaları</h2>
+        <div class="container">
+            <div class="left">
+                <h3>CEV Şampiyonlar Ligi (Kadınlar)</h3>
+                <div class="match">
+                    <span class="match-date">2024</span>
+                    <p>A. Carraro Imoco Volley (İtalya)</p>
+                </div>
+                <div class="match">
+                    <span class="match-date">2023</span>
+                    <p>Vakıfbank (Türkiye)</p>
+                </div>
+            </div>
+            
+            <div class="right">
+                <h3>CEV Şampiyonlar Ligi (Erkekler)</h3>
+                <div class="match">
+                    <span class="match-date">2024</span>
+                    <p>Grupa Azoty ZAKSA (Polonya)</p>
+                </div>
+                <div class="match">
+                    <span class="match-date">2023</span>
+                    <p>Itas Trentino (İtalya)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="haberler" class="tab">
+    <h1>Voleybol Haberleri</h1>
+    <ul>
+        <li>
+            <h3>VakıfBank, Şampiyonlar Ligi çeyrek finalinde!</h3>
+            <p><small>18 Mart 2025</small></p>
+            <p>VakıfBank, Şampiyonlar Ligi'nde Fenerbahçe Medicana'yı 3-1 yenerek yarı finale yükseldi. Sarı-siyahlılar yarı finalde italyan ekibi Scandicci ile karşılaşacak.</p>
+        </li>
+        <li>
+            <h3>Halkbank, Efeler Ligi'nde ilk dörde kalamadı</h3>
+            <p><small>17 Mart 2025</small></p>
+            <p>Efeler Ligi'nde geçen sezonun şampiyonu Halkbank, play-off çeyrek finalinde Spor Toto'ya elenerek ilk dört takım arasına giremedi.</p>
+        </li>
+        <li>
+            <h3>Eczacıbaşı Dynavit, Ferhat Akbaş ile yollarını ayırdı</h3>
+            <p><small>16 Mart 2025</small></p>
+            <p>Sultanlar Ligi'nde mücadele eden Eczacıbaşı Dynavit, başantrenör Ferhat Akbaş ile karşılıklı anlaşarak yollarını ayırdıklarını duyurdu. Ekibin başına Hüseyin Doğanyüz'ün geçeceği açıklandı.</p>
+        </li>
+        <li>
+            <h3>Eczacıbaşı Dynavit, Hande Baladın ile yollarını ayırdı</h3>
+            <p><small>25 Haziran 2025</small></p>
+            <p>Sultanlar Ligi'nde mücadele eden Eczacıbaşı Dynavit, milli smaçör Hande Baladın ile karşılıklı anlaşarak yollarını ayırdıklarını duyurdu.</p>
+        </li>
+        <li>
+            <h3>Milli Takım fikstür açıklandı</h3>
+            <p><small>15 Mart 2025</small></p>
+            <p>Filenin Sultanları, Dünya Şampiyonası eleme fikstürü açıklandı.</p>
+        </li>
+    </ul>
+</div>
+
+<div id="iletisim" class="tab">
+    <h1>İletişim Formu</h1>
+    <p>Sorularınız, önerileriniz veya görüşleriniz için aşağıdaki formu doldurarak bize ulaşabilirsiniz. En kısa sürede sizinle iletişime geçeceğiz.</p>
+    
+    <div class="form-success" id="formSuccess">
+        Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız. Teşekkür ederiz!
+    </div>
+    
+    <form id="contactForm" class="contact-form">
+        <div class="form-row">
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="name">Adınız Soyadınız *</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+            </div>
+            <div class="form-col">
+                <div class="form-group">
+                    <label for="email">E-posta Adresiniz *</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="subject">Konu</label>
+            <select class="form-control" id="subject" name="subject">
+                <option value="genel">Genel Bilgi</option>
+                <option value="spor">Spor Kulüpleri</option>
+                <option value="reklam">Reklam ve İşbirlikleri</option>
+                <option value="hata">Hata Bildirimi</option>
+                <option value="oneri">Öneri</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Mesajınız *</label>
+            <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>
+               <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                Voleybol Türkiye'nin haftalık bültenini almak istiyorum
+            </label>
+        </div>
+
+        <button type="submit" class="btn">Mesaj Gönder</button>
+    </form>
+</div>
+
+<div id="hakkimizda" class="tab">
+    <h1>Hakkımızda</h1>
+    <div class="container">
+        <div class="left">
+            <h2>Misyonumuz</h2>
+            <p>Voleybol Türkiye olarak, Türkiye'deki voleybol sporunu desteklemek, gelişimleri takip etmek ve voleybol severlere en güncel bilgileri sunmak amacıyla kurulmuş bir platformuz.</p>
+            
+            <h2>Vizyonumuz</h2>
+            <p>Türkiye'nin en kapsamlı ve güvenilir voleybol haber kaynağı olmak, voleybol camiasının buluşma noktası haline gelmektir.</p>
+        </div>
+        
+        <div class="right">
+            <h2>Neler Sunuyoruz?</h2>
+            <ul>
+                <li>Güncel voleybol haberleri</li>
+                <li>Sultanlar ve Efeler Ligi fikstür bilgileri</li>
+                <li>Takım ve oyuncu istatistikleri</li>
+                <li>Şampiyonluk geçmişi</li>
+                <li>Avrupa kupalarından haberler</li>
+                <li>Milli takım gelişmeleri</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!-- Chatbot -->
+<div class="chatbot-container">
+    <button class="chatbot-toggle" id="chatbotToggle">💬</button>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <h3>Voleybol Asistanı</h3>
+            <button class="close-btn" id="closeChatbot">×</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot">
+                <div class="message-avatar">🏐</div>
+                <div class="message-content">
+                    Merhaba! Voleybol hakkında sorularınızı cevaplayabilirim. Size nasıl yardımcı olabilirim?
+                </div>
+            </div>
+            <div class="quick-buttons">
+                <button class="quick-btn" onclick="sendQuickMessage('Voleybol nedir?')">Voleybol Nedir?</button>
+                <button class="quick-btn" onclick="sendQuickMessage('Nasıl oynanır?')">Nasıl Oynanır?</button>
+                <button class="quick-btn" onclick="sendQuickMessage('Sultanlar Ligi takımları')">Sultanlar Ligi</button>
+                <button class="quick-btn" onclick="sendQuickMessage('Efeler Ligi takımları')">Efeler Ligi</button>
+                <button class="quick-btn" onclick="sendQuickMessage('VakıfBank oyuncuları')">VakıfBank Kadrosu</button>
+                <button class="quick-btn" onclick="sendQuickMessage('Milli takım oyuncuları')">Milli Takım</button>
+            </div>
+        </div>
+        <div class="chatbot-input">
+            <div class="input-container">
+                <input type="text" id="chatbotInput" placeholder="Mesajınızı yazın...">
+                <button class="send-btn" id="sendMessage">➤</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Voleybol Türkiye. Tüm hakları saklıdır.</p>
+    <div class="social-media">
+        <a href="#" class="social-icon">📘</a>
+        <a href="#" class="social-icon">🐦</a>
+        <a href="#" class="social-icon">📷</a>
+        <a href="#" class="social-icon">📺</a>
+    </div>
+</footer>
+
+<script>
+// Tab Navigation
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const tabs = document.querySelectorAll('.tab');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Remove active class from all nav links and tabs
+            navLinks.forEach(nl => nl.classList.remove('active-nav'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Add active class to clicked nav link
+            this.classList.add('active-nav');
+            
+            // Show corresponding tab
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+
+    // Contact Form
+    const contactForm = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Simple form validation
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        
+        if (name && email && message) {
+            formSuccess.style.display = 'block';
+            contactForm.reset();
+            
+            setTimeout(() => {
+                formSuccess.style.display = 'none';
+            }, 5000);
+        }
+    });
+
+    // Chatbot Functionality
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const closeChatbot = document.getElementById('closeChatbot');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const sendMessage = document.getElementById('sendMessage');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+
+    chatbotToggle.addEventListener('click', function() {
+        chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    closeChatbot.addEventListener('click', function() {
+        chatbotWindow.style.display = 'none';
+    });
+
+    sendMessage.addEventListener('click', sendChatMessage);
+    chatbotInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendChatMessage();
+        }
+    });
+
+    function sendChatMessage() {
+        const message = chatbotInput.value.trim();
+        if (message) {
+            addMessage(message, 'user');
+            chatbotInput.value = '';
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                hideTypingIndicator();
+                generateBotResponse(message);
+            }, 1500);
+        }
+    }
+
+    function sendQuickMessage(message) {
+        addMessage(message, 'user');
+        showTypingIndicator();
+        
+        setTimeout(() => {
+            hideTypingIndicator();
+            generateBotResponse(message);
+        }, 1500);
+    }
+
+    function addMessage(message, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}`;
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'message-avatar';
+        avatar.textContent = sender === 'user' ? '👤' : '🏐';
+        
+        const content = document.createElement('div');
+        content.className = 'message-content';
+        content.textContent = message;
+        
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(content);
+        
+        chatbotMessages.appendChild(messageDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'typing-indicator';
+        typingDiv.id = 'typingIndicator';
+        
+        for (let i = 0; i < 3; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'typing-dot';
+            typingDiv.appendChild(dot);
+        }
+        
+        chatbotMessages.appendChild(typingDiv);
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+        const typingIndicator = document.getElementById('typingIndicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+
+    function generateBotResponse(userMessage) {
+        let response = '';
+        const lowerMessage = userMessage.toLowerCase();
+        
+        // Voleybol nedir soruları
+        if (lowerMessage.includes('voleybol nedir') || lowerMessage.includes('voleybol ne') || lowerMessage.includes('voleybol hakkında')) {
+            response = 'Voleybol, 6 kişilik iki takım arasında oynanan bir spordur. Amaç, topu rakip sahaya düşürmek ve rakibin topu kendi sahanıza düşürmesini engellemektir. 1895\'te William G. Morgan tarafından icat edilmiştir.';
+        }
+        
+        // Nasıl oynanır soruları
+        else if (lowerMessage.includes('nasıl oynanır') || lowerMessage.includes('oyun kuralları') || lowerMessage.includes('kural')) {
+            response = 'Voleybol 6 kişilik takımlarla oynanır. Saha 18x9 metre, file yüksekliği kadınlarda 2.24m, erkeklerde 2.43m\'dir. Takımlar topu en fazla 3 kez dokunabilir. Servis, smaç, blok temel teknikleridir. 25 sayıya ilk ulaşan set alır (2 sayı farkla).';
+        }
+        
+        // Sultanlar Ligi takımları
+        else if (lowerMessage.includes('sultanlar ligi') || lowerMessage.includes('kadın takım')) {
+            response = 'Sultanlar Ligi\'nde 12 takım mücadele ediyor: VakıfBank, Eczacıbaşı Dynavit, Fenerbahçe Opet, Galatasaray Daikin, THY, Çan Gençlik, Kuzeyboru, Aydın Büyükşehir, Nilüfer Belediye, Beylikdüzü, Karayolları ve Sarıyer Belediye.';
+        }
+        
+        // Efeler Ligi takımları
+        else if (lowerMessage.includes('efeler ligi') || lowerMessage.includes('erkek takım')) {
+            response = 'Efeler Ligi\'nde 14 takım var: Halkbank, Ziraat Bankkart, Fenerbahçe Medicana, Galatasaray HDI Sigorta, Arkas Spor, Spor Toto, İnegöl Belediye, Afyon Belediye, Solhan Spor, Brand Group Alanya, Rams Global Cizre, Tokat Belediye, Bigadiç Belediye ve Altekma.';
+        }
+        
+        // VakıfBank oyuncuları
+        else if (lowerMessage.includes('vakıfbank oyuncu') || (lowerMessage.includes('vakıfbank') && lowerMessage.includes('oyuncu'))) {
+            response = 'VakıfBank\'ın yıldız oyuncuları: Guidetti (antrenör), Isabelle Haak (libero), Tijana Bošković (smaçör), Gabriela Guimarães (smaçör), Chiaka Ogbogu (orta oyuncu), Zehra Güneş (orta oyuncu), Ayşe Kalaycı (oyun kurucu).';
+        }
+        
+        // Eczacıbaşı oyuncuları
+        else if (lowerMessage.includes('eczacıbaşı oyuncu') || (lowerMessage.includes('eczacıbaşı') && lowerMessage.includes('oyuncu'))) {
+            response = 'Eczacıbaşı Dynavit\'in önemli oyuncuları: Melissa Vargas (smaçör), Irina Voronkova (smaçör), Beyza Arıcı (smaçör), Stevanović (orta oyuncu), Simge Şebnem Aköz (oyun kurucu), Gizem Örge (libero).';
+        }
+        
+        // Fenerbahçe oyuncuları
+        else if (lowerMessage.includes('fenerbahçe oyuncu') || (lowerMessage.includes('fenerbahçe') && lowerMessage.includes('oyuncu'))) {
+            response = 'Fenerbahçe Opet\'in kadrosu: Ana Cristina (smaçör), Arina Fedorovtseva (smaçör), Melissa Teresa (orta oyuncu), Eda Erdem (kaptan, orta oyuncu), Naz Aydemir (oyun kurucu), Gizem Güreşen (libero).';
+        }
+        
+        // Halkbank oyuncuları
+        else if (lowerMessage.includes('halkbank oyuncu') || (lowerMessage.includes('halkbank') && lowerMessage.includes('oyuncu'))) {
+            response = 'Halkbank\'ın yıldız oyuncuları: Nimir Abdel-Aziz (smaçör), Adis Lagumdžija (smaçör), Yacine Louati (orta oyuncu), Burutaran (oyun kurucu), Gökhan Gökgöz (libero), Kaan Gürbüz (smaçör).';
+        }
+        
+        // Ziraat Bankkart oyuncuları
+        else if (lowerMessage.includes('ziraat oyuncu') || (lowerMessage.includes('ziraat') && lowerMessage.includes('oyuncu'))) {
+            response = 'Ziraat Bankkart\'ın kadrosu: Earvin N\'Gapeth (smaçör), Lincoln Williams (smaçör), Efe Mandıracı (orta oyuncu), Ulaş Kıyak (oyun kurucu), Caner Ergül (libero), Bedirhan Bülbül (smaçör).';
+        }
+        
+        // Galatasaray oyuncuları
+        else if (lowerMessage.includes('galatasaray oyuncu') || (lowerMessage.includes('galatasaray') && lowerMessage.includes('oyuncu'))) {
+            response = 'Galatasaray HDI Sigorta: Baturalp Burak Güngör (smaçör), Mirza Lagumdzija (smaçör), Metin Toy (orta oyuncu), Arslan Ekşi (oyun kurucu), Okan Akyol (libero). Kadın takımda: Meryem Boz, Ezgi Demiray, Bahar Toksoy Guidetti.';
+        }
+        
+        // Milli takım oyuncuları
+        else if (lowerMessage.includes('milli takım oyuncu') || lowerMessage.includes('filenin sultanları oyuncu')) {
+            response = 'Filenin Sultanları\'nın yıldızları: Zehra Güneş (kaptan), Melissa Vargas, Tijana Bošković, Hande Baladın, Ebrar Karakurt, Gizem Örge (libero), Simge Aköz, Beyza Arıcı, Eda Erdem.';
+        }
+        
+        // Genel oyuncu soruları
+        else if (lowerMessage.includes('oyuncu') && !lowerMessage.includes('takım')) {
+            response = 'Hangi takımın oyuncuları hakkında bilgi almak istiyorsunuz? VakıfBank, Eczacıbaşı, Fenerbahçe, Halkbank, Ziraat Bankkart, Galatasaray veya Milli Takım oyuncuları hakkında detaylı bilgi verebilirim.';
+        }
+        
+        // Puan durumu
+        else if (lowerMessage.includes('puan') || lowerMessage.includes('durumu')) {
+            response = 'Sultanlar Ligi puan durumu için Takımlar sekmesini ziyaret edebilirsiniz. VakıfBank ve Eczacıbaşı Dynavit lider konumda!';
+        }
+        
+        // Maç ve fikstür
+        else if (lowerMessage.includes('maç') || lowerMessage.includes('fikstür')) {
+            response = 'Bugünkü maçlar için Fikstür sekmesine göz atabilirsiniz. VakıfBank vs Eczacıbaşı Dynavit maçı saat 19:00\'da!';
+        }
+        
+        // Haberler
+        else if (lowerMessage.includes('haber') || lowerMessage.includes('son')) {
+            response = 'Son haberler için Voleybol Haberleri sekmesini ziyaret edin. VakıfBank Şampiyonlar Ligi\'nde yarı finale yükseldi!';
+        }
+        
+        // Takım özel sorular
+        else if (lowerMessage.includes('vakıfbank') || lowerMessage.includes('vb')) {
+            response = 'VakıfBank, Türkiye\'nin en başarılı voleybol takımlarından biri. 2023 Şampiyonlar Ligi şampiyonu. Giovanni Guidetti antrenörlüğünde güçlü bir kadrosu var.';
+        }
+        else if (lowerMessage.includes('fenerbahçe') || lowerMessage.includes('fb')) {
+            response = 'Fenerbahçe hem kadın hem erkek voleybolda aktif. Sultanlar Ligi\'nde 2024 şampiyonu Fenerbahçe Opet! Eda Erdem gibi efsane oyuncuları var.';
+        }
+        else if (lowerMessage.includes('eczacıbaşı')) {
+            response = 'Eczacıbaşı Dynavit, Sultanlar Ligi\'nin güçlü takımlarından. Melissa Vargas gibi dünya yıldızları kadrosunda yer alıyor.';
+        }
+        
+        // Pozisyon bilgileri
+        else if (lowerMessage.includes('pozisyon') || lowerMessage.includes('mevki')) {
+            response = 'Voleybolda 6 pozisyon var: Smaçör (4 ve 2 numaralı), Orta Oyuncu (3 numaralı), Oyun Kurucu (1 numaralı), Libero (6 numaralı), Karşı Smaçör (5 numaralı). Her pozisyonun kendine özgü görevleri vardır.';
+        }
+        
+        // Şampiyonluk soruları
+        else if (lowerMessage.includes('şampiyon') || lowerMessage.includes('kupa')) {
+            response = 'Sultanlar Ligi\'nde son şampiyon Fenerbahçe Opet (2024). Efeler Ligi\'nde Halkbank (2024). Şampiyonlar Ligi\'nde son Türk şampiyonu VakıfBank (2023).';
+        }
+        
+        // Genel yardım
+        else {
+            response = 'Voleybol hakkında her şeyi sorabilirsiniz! Voleybol nedir, nasıl oynanır, takımlar, oyuncular, kurallar, pozisyonlar hakkında detaylı bilgi verebilirim. Hangi konuda yardımcı olmamı istiyorsunuz?';
+        }
+        
+        addMessage(response, 'bot');
+    }
+
+    // Make sendQuickMessage global
+    window.sendQuickMessage = sendQuickMessage;
+});
+</script>
+
+</body>
+</html>
